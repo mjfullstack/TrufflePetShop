@@ -89,11 +89,17 @@ App = {
 
       return adoptionInstance.getAdopters.call();
       }).then(function(adopters) {
+        // console.log("THEN after markAdopted ALL adopters:", adopters);
+        // let adoptersPARSED = JSON.parse(adopters);
+        // console.log("THEN after markAdopted ALL JSON.parse(adopters):", JSON.parse(adopters));
         console.log("THEN after markAdopted ALL adopters:", adopters);
         for (i = 0; i < adopters.length; i++) {
-          console.log(i, ": adopters[", i, "] : ", adopters[i] );
-          // if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
-            if (adopters[i] !== '0x') { // NOTE: ALL array elements are "0x", NONE are the address of adopter
+          console.log(i, ': adopters[', i, ']: ', adopters[i] );
+          if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
+                           // '0x0000000000000000000000000000000000000000'
+            // if (adopters[i] !== '0x') { // NOTE: ALL array elements are "0x", NONE are the address of adopter
+            // NOTE: After pushing to github and downloading, did npm install, it now returns the LOOOONG 0x00..
+            // AND Places ADDRESS OF ADOPTER into adopters array. Also, NO JSON needed. WORKS - 4/1/19!!
               $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
           }
         }
